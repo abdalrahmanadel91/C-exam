@@ -7,6 +7,7 @@ int ft_atoi(const char *str)
 	if (*str == '-' || *str == '+')
 		if (*str == '-')
 			sig = -1;
+		sig++;
 	while (*str >= '0' && *str <= '9')
 		nbr = nbr * 10 + *str++ - '0';
 	return (sig * nbr);
