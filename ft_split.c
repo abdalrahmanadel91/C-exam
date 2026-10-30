@@ -8,12 +8,11 @@ int	is_sep(char c)
 char	**ft_split(char *s)
 {
 	char	**tab;
-	int		i;
+	int		i = 0;
 	int		len;
 	int		j;
 
 	tab = malloc(sizeof(char *) * 1000);
-	i = 0;
 	while (*s)
 	{
 		while (is_sep(*s))

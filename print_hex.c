@@ -1,28 +1,22 @@
 #include <unistd.h>
 
-void	print_hex(unsigned int n)
+void h(unsigned n)
 {
-	char *hex = "0123456789abcdef";
-
-	if (n >= 16)
-		print_hex(n / 16);
-	write(1, &hex[n % 16], 1);
+	if (n > 15)
+		h(n / 16);
+	write(1, &"0123456789abcdef"[n % 16], 1);
 }
 
-int	main(int argc, char **argv)
+int main(int c, char **v)
 {
-	int				i = 0;
-	unsigned int	n = 0;
+	unsigned n = 0;
+	char *s = v[1];
 
-	if (argc == 2)
+	if (c == 2)
 	{
-		while (argv[1][i])
-		{
-			n = n * 10 + argv[1][i] - '0';
-			i++;
-		}
-		print_hex(n);
+		while (*s)
+			n = n * 10 + *s++ - '0';
+		h(n);
 	}
 	write(1, "\n", 1);
-	return (0);
 }
