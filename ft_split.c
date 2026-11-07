@@ -1,38 +1,54 @@
 #include <stdlib.h>
 
-int	is_sep(char c)
+static int	is_sep(char c)
 {
-	return (c == ' ' || c == '\t' || c == '\n');
+	return (c == '\t' || c == ' ' || c == '\n');
 }
 
-char	**ft_split(char *s)
+char	**ft_split(char *str)
 {
-	char	**tab;
 	int		i = 0;
-	int		len;
 	int		j;
+	int		len;
+	char	**tab;
 
 	tab = malloc(sizeof(char *) * 1000);
-	while (*s)
+	if (!tab)
+		return (NULL);
+	while (*str)
 	{
-		while (is_sep(*s))
-			s++;
+		while (is_sep(*str))
+			str++;
+		if (!*str)
+			break ;
 		len = 0;
-		while (s[len] && !is_sep(s[len]))
+		while (str[len] && !is_sep(str[len]))
 			len++;
-		if (len)
+		tab[i] = malloc(len + 1);
+		j = 0;
+		while (j < len)
 		{
-			tab[i] = malloc(len + 1);
-			j = 0;
-			while (j < len)
-			{
-				tab[i][j] = s[j];
-				j++;
-			}
-			tab[i++][len] = 0;
-			s += len;
+			tab[i][j] = str[j];
+			j++;
 		}
+		tab[i++][j] = '\0';
+		str += len;
 	}
 	tab[i] = NULL;
 	return (tab);
+}
+#include <stdio.h>
+int	main(void)
+{
+	char	**tab;
+	int		i;
+
+	tab = ft_split("  hello   world  ");
+	i = 0;
+	while (tab[i])
+	{
+		printf("%s\n", tab[i]);
+		i++;
+	}
+	return (0);
 }
