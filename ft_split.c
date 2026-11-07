@@ -41,10 +41,9 @@ char	**ft_split(char *str)
 int	main(void)
 {
 	char	**tab;
-	int		i;
+	int		i = 0;
 
 	tab = ft_split("  hello   world  ");
-	i = 0;
 	while (tab[i])
 	{
 		printf("%s\n", tab[i]);
