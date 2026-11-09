@@ -1,7 +1,6 @@
 #include <stdlib.h>
-#include <stdio.h>
 
-static int	is_sep(char c)
+int	is_sep(char c)
 {
 	return (c == '\t' || c == ' ' || c == '\n');
 }
@@ -36,7 +35,7 @@ char	**ft_split(char *str)
 	tab[i] = NULL;
 	return (tab);
 }
-
+#include <stdio.h>
 int	main(void)
 {
 	char	**tab;
