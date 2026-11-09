@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 static int	is_sep(char c)
 {
@@ -13,11 +14,9 @@ char	**ft_split(char *str)
 	char	**tab;
 
 	tab = malloc(sizeof(char *) * 1000);
-	if (!tab)
-		return (NULL);
 	while (*str)
 	{
-		while (is_sep(*str))
+		while (*str && is_sep(*str))
 			str++;
 		if (!*str)
 			break ;
@@ -37,17 +36,21 @@ char	**ft_split(char *str)
 	tab[i] = NULL;
 	return (tab);
 }
-#include <stdio.h>
+
 int	main(void)
 {
 	char	**tab;
-	int		i = 0;
+	int		i;
 
-	tab = ft_split("  hello   world  ");
-	while (tab[i])
+	tab = ft_split("   hello   world   exam  test  ");
+	i = 0;
+	if (tab)
 	{
-		printf("%s\n", tab[i]);
-		i++;
+		while (tab[i])
+		{
+			printf("%s\n", tab[i]);
+			i++;
+		}
 	}
 	return (0);
 }
