@@ -14,8 +14,9 @@ int ft_atoi(const char *str)
 		nbr = nbr * 10 + *str++ - '0';
 	return (sig * nbr);
 }
+
 #include <stdio.h>
 int main(void)
 {
-	printf("%d\n",ft_atoi("----1526"));
+	printf("%d\n",ft_atoi("-1526"));
 }
