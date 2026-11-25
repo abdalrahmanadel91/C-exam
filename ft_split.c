@@ -2,54 +2,53 @@
 
 int	is_sep(char c)
 {
-	return (c == '\t' || c == ' ' || c == '\n');
+	return (c == ' ' || c == '\t' || c == '\n');
 }
-
 char	**ft_split(char *str)
 {
 	int		i = 0;
 	int		j;
-	int		len;
+	int		len = 0;
 	char	**tab;
 
-	tab = malloc(sizeof(char *) * 1000);
+	while (str[len])
+		len++;
+	tab = malloc(sizeof(char *) * (len / 2 + 2));
 	while (*str)
 	{
 		while (*str && is_sep(*str))
 			str++;
-		if (!*str)
-			break ;
 		len = 0;
 		while (str[len] && !is_sep(str[len]))
 			len++;
-		tab[i] = malloc(len + 1);
-		j = 0;
-		while (j < len)
+		if (len)
 		{
-			tab[i][j] = str[j];
-			j++;
+			tab[i] = malloc(len + 1);
+			j = 0;
+			while (j < len)
+			{
+				tab[i][j] = str[j];
+				j++;
+			}
+			tab[i++][j] = '\0';
+			str += len;
 		}
-		tab[i++][j] = '\0';
-		str += len;
 	}
 	tab[i] = NULL;
 	return (tab);
 }
+
 #include <stdio.h>
 int	main(void)
 {
 	char	**tab;
-	int		i;
+	int		i = 0;
 
 	tab = ft_split("   hello   world   exam  test  ");
-	i = 0;
 	if (tab)
 	{
 		while (tab[i])
-		{
-			printf("%s\n", tab[i]);
-			i++;
-		}
+			printf("%s\n", tab[i++]);
 	}
 	return (0);
 }
