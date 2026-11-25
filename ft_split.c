@@ -30,7 +30,7 @@ char	**ft_split(char *str)
 				tab[i][j] = str[j];
 				j++;
 			}
-			tab[i++][j] = '\0';
+			tab[i++][j] = 0;
 			str += len;
 		}
 	}
